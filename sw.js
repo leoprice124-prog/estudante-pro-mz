@@ -1,4 +1,4 @@
-const CACHE_NAME = 'estudante-pro-mz-v2';
+const CACHE_NAME = 'estudante-pro-mz-v3';
 self.addEventListener('install', e => {
   self.skipWaiting();
   e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(['/', '/index.html', '/manifest.json', '/icon-512.png'])));

@@ -26,5 +26,5 @@ class EstudanteHandler(SimpleHTTPRequestHandler):
         return super().do_GET()
 
 if __name__ == "__main__":
-    print(f"Estudante Pro MZ App nativo na porta {PORT}", flush=True)
+    print(f"Estudante Pro MZ ativo na porta {PORT}", flush=True)
     HTTPServer(("0.0.0.0", PORT), EstudanteHandler).serve_forever()
