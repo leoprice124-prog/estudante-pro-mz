@@ -105,10 +105,11 @@
       @page { size: A4; margin: 0; }
     }
   </style>
+<link rel="manifest" href="/manifest.json" /><meta name="theme-color" content="#2563eb" /><link rel="apple-touch-icon" href="https://flaticon.com" />
 </head>
 <body>
 <header>
-  <div class="brand">🎓 Estudante Pro MZ</div>
+  <div class="brand">🎓 Estudante Pro MZ</div><button id="btnInstalarApp" onclick="instalarAppPwa()" style="background:#10b981;color:#020617;border:none;padding:6px 12px;border-radius:20px;font-weight:800;font-size:12px;cursor:pointer;">📲 Instalar App</button>
   <div class="badge-vip" id="statusPlano">🆓 Grátis (2 Exportações) • Auto-Save Ativo</div>
 </header>
 <div class="nav-tabs">
@@ -402,8 +403,28 @@
   }
   function exportarWord() {
     if (!verificarPermissaoExportar()) return;
-    const pre = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://w3.org'><head><meta charset='utf-8'><style>body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;text-align:justify;}p{text-indent:1.25cm;margin-bottom:12pt;}table{width:100%;border-collapse:collapse;}td,th{border:1px solid #000;padding:6pt;}</style></head><body>`;
-    const blob = new Blob(['\ufeff', pre + document.getElementById('folhaA4').innerHTML + "</body></html>"], { type: 'application/msword' });
+    const pre = `<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://w3.org'><head><meta charset='utf-8'><style>body{font-family:'Times New Roman',serif;font-size:12pt;line-height:1.5;text-align:justify;}p{text-indent:1.25cm;margin-bottom:12pt;}table{width:100%;border-collapse:collapse;}td,th{border:1px solid #000;padding:6pt;}</style><link rel="manifest" href="/manifest.json" /><meta name="theme-color" content="#2563eb" /><link rel="apple-touch-icon" href="https://flaticon.com" />
+</head><body>`;
+    const blob = new Blob(['\ufeff', pre + document.getElementById('folhaA4').innerHTML + "<script>
+  let deferredPrompt;
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  async function instalarAppPwa() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("📲 Para instalar no telemóvel:\n\n• Android (Chrome): Toque nos 3 pontinhos (⋮) no canto superior direito e escolha 'Instalar aplicativo' ou 'Adicionar à tela inicial'.\n• iPhone (Safari): Toque no ícone Partilhar (⬆️) e escolha 'Adicionar à Tela de Início'.");
+    }
+  }
+</script>
+</body></html>"], { type: 'application/msword' });
     const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'Trabalho_EstudanteProMZ.doc'; a.click();
   }
   function imprimirPDF() { if (verificarPermissaoExportar()) window.print(); }
@@ -463,6 +484,25 @@
   }
   function salvarAuto() { localStorage.setItem('estudante_pro_word_a4', document.getElementById('folhaA4').innerHTML); }
   window.onload = () => { const s = localStorage.getItem('estudante_pro_word_a4'); if (s) document.getElementById('folhaA4').innerHTML = s; atualizarBadgePlano(); atualizarContador(); };
+</script>
+<script>
+  let deferredPrompt;
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  async function instalarAppPwa() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("📲 Para instalar no telemóvel:\n\n• Android (Chrome): Toque nos 3 pontinhos (⋮) no canto superior direito e escolha 'Instalar aplicativo' ou 'Adicionar à tela inicial'.\n• iPhone (Safari): Toque no ícone Partilhar (⬆️) e escolha 'Adicionar à Tela de Início'.");
+    }
+  }
 </script>
 </body>
 </html>
@@ -642,6 +682,25 @@
   };
 
   window.addEventListener('DOMContentLoaded', atualizarTextosPagamento);
+</script>
+<script>
+  let deferredPrompt;
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  }
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+  async function instalarAppPwa() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+    } else {
+      alert("📲 Para instalar no telemóvel:\n\n• Android (Chrome): Toque nos 3 pontinhos (⋮) no canto superior direito e escolha 'Instalar aplicativo' ou 'Adicionar à tela inicial'.\n• iPhone (Safari): Toque no ícone Partilhar (⬆️) e escolha 'Adicionar à Tela de Início'.");
+    }
+  }
 </script>
 </body>
 </html>
