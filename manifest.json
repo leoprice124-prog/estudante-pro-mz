@@ -1,18 +1,25 @@
 {
-  "name": "Estudante Pro MZ — Word A4, Defesas & Estudo",
-  "short_name": "Estudante Pro",
-  "description": "Editor Word A4, Preparador de Defesas, Galeria de Estudo, Scanner PDF e Cálculo de Notas.",
-  "start_url": "/",
+  "id": "/",
+  "name": "Estudante Pro MZ",
+  "short_name": "EstudantePro",
+  "description": "Word A4, Defesas, Galeria de Estudo e Notas.",
+  "start_url": "/?source=pwa",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#2563eb",
-  "orientation": "portrait",
   "icons": [
     {
-      "src": "https://flaticon.com",
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
